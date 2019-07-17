@@ -3,8 +3,10 @@ import "./App.css";
 
 function Counter(props) {
   return (
-    <div className="counter">
-      <div className="remove">Remove</div>
+    <div className="counter" data-key={props.dataKey}>
+      <div onClick={props.handler} className="remove">
+        Remove
+      </div>
       <div className="counterBox">
         <div>{props.name}</div>
         <div>{props.number}</div>
@@ -30,12 +32,31 @@ export default class App extends Component {
     };
   }
 
+  handler(someValue) {
+    const index = someValue.target.parentNode.getAttribute("data-key");
+    //const counters = [...this.state.counters];
+    // this.setState({
+    //   counters: counters.splice(index, 1)
+    // });
+    this.setState({
+      counters: [{ name: "jojo", number: 3 }]
+    });
+  }
+
   render() {
     const counters = [];
     for (let i = 0; i < this.state.counters.length; i++) {
       const counter = this.state.counters[i].name;
       const number = this.state.counters[i].number;
-      counters.push(<Counter key={i} name={counter} number={number} />);
+      counters.push(
+        <Counter
+          handler={this.handler}
+          key={i}
+          dataKey={i}
+          name={counter}
+          number={number}
+        />
+      );
     }
     const Counters = <div className="counters">{counters}</div>;
 
