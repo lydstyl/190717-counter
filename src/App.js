@@ -32,16 +32,13 @@ export default class App extends Component {
     };
   }
 
-  handler(someValue) {
+  handler = someValue => {
     const index = someValue.target.parentNode.getAttribute("data-key");
-    //const counters = [...this.state.counters];
-    // this.setState({
-    //   counters: counters.splice(index, 1)
-    // });
+    const counters = [...this.state.counters];
     this.setState({
-      counters: [{ name: "jojo", number: 3 }]
+      counters: counters.filter((current, i) => i != index)
     });
-  }
+  };
 
   render() {
     const counters = [];
