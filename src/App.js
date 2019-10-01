@@ -30,7 +30,7 @@ export default class App extends Component {
     const inputVal = this.state.inputText;
     if (inputVal) {
       this.setState({
-        counters: [...this.state.counters, { name: inputVal, number: 0 }],
+        counters: [...this.state.counters, { dataKey:this.state.counters.length, name: inputVal, number: 0 }],
         inputText: ''
       });
     }
@@ -54,7 +54,12 @@ export default class App extends Component {
     const dataKey = parseInt(e.target.parentNode.parentNode.getAttribute("data-key"));
     this.setState({
       counters: this.state.counters.map((counter) => {
-        return {...counter, number: counter.number+1};
+        if (dataKey == counter.dataKey) {
+          
+          return {...counter, number: counter.number+1};
+        } else {
+          return counter;
+        }
       })
     });
   }
