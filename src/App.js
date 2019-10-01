@@ -33,11 +33,19 @@ export default class App extends Component {
     }
   }
 
-  handler = someValue => {
-    const index = someValue.target.parentNode.getAttribute("data-key");
-    const counters = [...this.state.counters];
+  handler = e => {
+    
+    const index = parseInt(e.target.parentNode.getAttribute("data-key"));
+    console.log(index);
+    // const counters = [...this.state.counters];
     this.setState({
-      counters: counters.filter((current, i) => i !== index)
+      counters: this.state.counters.filter((current, i) => {
+        if (i !== index) {
+          console.log(current,i, index);
+          
+        }
+        return i !== index;
+      })
     });
   };
 
@@ -53,7 +61,7 @@ export default class App extends Component {
       const number = this.state.counters[i].number;
       counters.push(
         <Counter
-          handler={this.handler}
+          handler={e=>this.handler(e)}
           key={i}
           dataKey={i}
           name={counter}
@@ -70,13 +78,7 @@ export default class App extends Component {
         <div className="new" onClick={e => 
             this.addNew(e)
           }>New</div>
-        <div
-          
-        >
-          <div>
-            <br />
-          </div>
-        </div>
+        
         {Counters}
       </div>
     );
