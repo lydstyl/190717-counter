@@ -28,7 +28,8 @@ export default class App extends Component {
     const inputVal = this.state.inputText;
     if (inputVal) {
       this.setState({
-        counters: [...this.state.counters, { name: inputVal, number: 0 }]
+        counters: [...this.state.counters, { name: inputVal, number: 0 }],
+        inputText: ''
       });
     }
   }
@@ -36,21 +37,14 @@ export default class App extends Component {
   handler = e => {
     
     const index = parseInt(e.target.parentNode.getAttribute("data-key"));
-    console.log(index);
-    // const counters = [...this.state.counters];
     this.setState({
       counters: this.state.counters.filter((current, i) => {
-        if (i !== index) {
-          console.log(current,i, index);
-          
-        }
         return i !== index;
       })
     });
   };
 
   handleChange(e) {
-    console.log(e.target.value);
     this.setState({inputText:e.target.value})
   }
 
