@@ -16,8 +16,16 @@ function Counter(props) {
 }
 
 export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      inputText: '',
+      counters: [{ name: "exemple", number: 3 }]
+    };
+  }
+
   addNew(e) {
-    const inputVal = document.querySelector("input").value;
+    const inputVal = this.state.inputText;
     if (inputVal) {
       this.setState({
         counters: [...this.state.counters, { name: inputVal, number: 0 }]
@@ -25,20 +33,18 @@ export default class App extends Component {
     }
   }
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      counters: [{ name: "coco", number: 3 }]
-    };
-  }
-
   handler = someValue => {
     const index = someValue.target.parentNode.getAttribute("data-key");
     const counters = [...this.state.counters];
     this.setState({
-      counters: counters.filter((current, i) => i != index)
+      counters: counters.filter((current, i) => i !== index)
     });
   };
+
+  handleChange(e) {
+    console.log(e.target.value);
+    this.setState({inputText:e.target.value})
+  }
 
   render() {
     const counters = [];
@@ -60,12 +66,12 @@ export default class App extends Component {
     return (
       <div className="App">
         <h1>Counter</h1>
-        <input type="text" maxLength="10" />
-        <div className="new">New</div>
+        <input type="text" maxLength="10" value={this.state.inputText} onChange={e => this.handleChange(e)} />
+        <div className="new" onClick={e => 
+            this.addNew(e)
+          }>New</div>
         <div
-          onClick={e => {
-            this.addNew(e);
-          }}
+          
         >
           <div>
             <br />
