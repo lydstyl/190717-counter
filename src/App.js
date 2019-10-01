@@ -11,7 +11,7 @@ function Counter(props) {
         <div>{props.name}</div>
         <div>{props.number}</div>
         <div className='plus' onClick={props.increase}>+</div>
-        <div className='minus'>-</div>
+        <div className='minus' onClick={props.decrease}>-</div>
       </div>
     </div>
   );
@@ -52,9 +52,18 @@ export default class App extends Component {
 
   increase= e=>{
     const dataKey = parseInt(e.target.parentNode.parentNode.getAttribute("data-key"));
-    console.log('inCrease', dataKey);
     this.setState({
       counters: this.state.counters.map((counter) => {
+        return {...counter, number: counter.number+1};
+      })
+    });
+  }
+
+  decrease= e=>{
+    const dataKey = parseInt(e.target.parentNode.parentNode.getAttribute("data-key"));
+    this.setState({
+      counters: this.state.counters.map((counter) => {
+        return {...counter, number: counter.number-1};
       })
     });
   }
@@ -68,6 +77,7 @@ export default class App extends Component {
         <Counter
           handler={e=>this.handler(e)}
           increase={e=>this.increase(e)}
+          decrease={e=>this.increase(e)}
           key={i}
           dataKey={i}
           name={counter}
