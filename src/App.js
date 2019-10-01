@@ -7,7 +7,7 @@ function Counter(props) {
       <div onClick={props.handler} className="remove">
         Remove
       </div>
-      <div className="counterBox">
+      <div className="counterBox" onClick={props.inCrease}>
         <div>{props.name}</div>
         <div>{props.number}</div>
       </div>
@@ -20,7 +20,7 @@ export default class App extends Component {
     super(props);
     this.state = {
       inputText: '',
-      counters: [{ name: "exemple", number: 3 }]
+      counters: []
     };
   }
 
