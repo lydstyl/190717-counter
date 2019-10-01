@@ -68,7 +68,12 @@ export default class App extends Component {
     const dataKey = parseInt(e.target.parentNode.parentNode.getAttribute("data-key"));
     this.setState({
       counters: this.state.counters.map((counter) => {
-        return {...counter, number: counter.number-1};
+        if (dataKey == counter.dataKey) {
+          
+          return {...counter, number: counter.number-1};
+        } else {
+          return counter;
+        }
       })
     });
   }
@@ -82,7 +87,7 @@ export default class App extends Component {
         <Counter
           handler={e=>this.handler(e)}
           increase={e=>this.increase(e)}
-          decrease={e=>this.increase(e)}
+          decrease={e=>this.decrease(e)}
           key={i}
           dataKey={i}
           name={counter}
