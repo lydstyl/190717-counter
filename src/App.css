@@ -1,9 +1,31 @@
+* {
+  box-sizing: border-box;
+}
+body{
+  background-color: #607D8B;
+}
 .App {
   text-align: center;
+  background-color: #607D8B;
+  color: #FFFFFF;
+}
+.button{
+  margin: 2px;
+  padding: 6px;
+  background-color: #7C4DFF;
+  border-radius: 4px;
+  box-shadow: 6px 6px 6px -2px rgba(0, 0, 0, 0.4);
+}
+
+h1{
+  background: #455A64;
+  margin-top:0;
 }
 input {
   display: inline-block;
   width: 120px;
+  margin-right: 20px;
+  margin-bottom: 20px;
 }
 .new {
   display: inline-block;
@@ -16,25 +38,45 @@ input {
   justify-content: center;
   max-width: 768px;
   margin: auto;
+  background-color: #BDBDBD;
+  border-radius: 4px;
 }
 .counter {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 126px;
-  height: 126px;
-  box-sizing: border-box;
   margin: 5px;
+  padding: 10px;
+  background-color: white;
+  box-shadow: 6px 6px 6px -2px rgba(0, 0, 0, 0.4);
 }
 .remove {
   margin-bottom: 5px;
 }
 .counterBox {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   width: 100px;
-  height: 100px;
-  border: 1px solid red;
-  box-sizing: border-box;
+  background-color: white;
+  color: black;
+}
+.name{
+  width: 70%;
+  overflow-wrap: break-word;
+  font-size: 16px;
+  line-height: 27px;
+}
+.number{
+  width: 30%;
+  line-height: 54px;
 }
 .plus, .minus {
+  width: calc(50% - 3px);
   min-height: 30px;
+  color: white;
+}
+.minus{
+  margin-left: 0;
 }
