@@ -9,11 +9,11 @@ const Counter = props => {
       <div className='counterBox'>
         <h2 className='name'>{props.name}</h2>
         <div className='number'>{props.number}</div>
-        <div className='button plus' onClick={props.increase}>
-          +
-        </div>
         <div className='button minus' onClick={props.decrease}>
           -
+        </div>
+        <div className='button plus' onClick={props.increase}>
+          +
         </div>
       </div>
     </div>
