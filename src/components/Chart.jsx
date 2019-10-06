@@ -13,6 +13,15 @@ const Chart = ({ counters }) => {
     ]
   };
 
+  const options = {
+    legend: {
+      labels: {
+        fontColor: 'black',
+        fontSize: 18
+      }
+    }
+  };
+
   const randomColor = () => {
     return '#' + ((Math.random() * 0xffffff) << 0).toString(16);
   };
@@ -26,9 +35,8 @@ const Chart = ({ counters }) => {
 
   return (
     <div className='chartBox'>
-      <h2>Chart</h2>
       <div className='chart'>
-        <Doughnut data={data} />
+        <Doughnut data={data} options={options} />
       </div>
     </div>
   );

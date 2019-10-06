@@ -39,16 +39,22 @@ input {
   display: inline-block;
   width: 50px;
 }
+
+.counters,
+.chartBox {
+  max-width: 768px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #bdbdbd;
+  border-radius: 4px;
+}
 .counters {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  max-width: 768px;
-  margin: auto;
-  background-color: #bdbdbd;
-  border-radius: 4px;
 }
+
 .counter {
   display: flex;
   flex-direction: column;
