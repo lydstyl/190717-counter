@@ -13,24 +13,28 @@ export default class App extends Component {
     };
   }
 
+  generateKey = pre => {
+    return `${pre}_${new Date().getTime()}`;
+  };
+
   addNew(e) {
     const inputVal = this.state.inputText;
     if (inputVal) {
       this.setState({
         counters: [
           ...this.state.counters,
-          { dataKey: this.state.counters.length, name: inputVal, number: 0 }
+          { dataKey: this.generateKey(inputVal), name: inputVal, number: 0 }
         ],
         inputText: ''
       });
     }
   }
 
-  handler = e => {
-    const index = parseInt(e.target.parentNode.getAttribute('data-key'));
+  delete = e => {
+    const dataKey = e.target.parentNode.getAttribute('data-key');
     this.setState({
       counters: this.state.counters.filter((current, i) => {
-        return i !== index;
+        return current.dataKey !== dataKey;
       })
     });
   };
@@ -40,9 +44,7 @@ export default class App extends Component {
   }
 
   increase = e => {
-    const dataKey = parseInt(
-      e.target.parentNode.parentNode.getAttribute('data-key')
-    );
+    const dataKey = e.target.parentNode.parentNode.getAttribute('data-key');
     this.setState({
       counters: this.state.counters.map(counter => {
         if (dataKey === counter.dataKey) {
@@ -55,9 +57,7 @@ export default class App extends Component {
   };
 
   decrease = e => {
-    const dataKey = parseInt(
-      e.target.parentNode.parentNode.getAttribute('data-key')
-    );
+    const dataKey = e.target.parentNode.parentNode.getAttribute('data-key');
     this.setState({
       counters: this.state.counters.map(counter => {
         if (dataKey === counter.dataKey) {
@@ -76,11 +76,11 @@ export default class App extends Component {
       const number = this.state.counters[i].number;
       counters.push(
         <Counter
-          handler={e => this.handler(e)}
+          handler={e => this.delete(e)}
           increase={e => this.increase(e)}
           decrease={e => this.decrease(e)}
-          key={i}
-          dataKey={i}
+          key={i + counter}
+          dataKey={this.state.counters[i].dataKey}
           name={counter}
           number={number}
         />
