@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import Counter from './components/Counter';
+import Chart from './components/Chart';
 
 import './App.css';
 
@@ -109,6 +110,8 @@ export default class App extends Component {
         </div>
 
         {Counters}
+
+        <Chart counters={this.state.counters} />
       </div>
     );
   }
