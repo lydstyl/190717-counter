@@ -7,10 +7,17 @@ import './App.css';
 export default class App extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       inputText: '',
-      counters: []
+      counters: localStorage.getItem('counters')
+        ? JSON.parse(localStorage.getItem('counters'))
+        : []
     };
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    localStorage.setItem('counters', JSON.stringify(nextState.counters));
   }
 
   generateKey = pre => {
