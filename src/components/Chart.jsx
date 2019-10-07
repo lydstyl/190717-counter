@@ -33,13 +33,13 @@ const Chart = ({ counters }) => {
     data.datasets[0].hoverBackgroundColor.push(randomColor());
   });
 
-  return (
+  return counters.length ? (
     <div className='chartBox'>
       <div className='chart'>
         <Doughnut data={data} options={options} />
       </div>
     </div>
-  );
+  ) : null;
 };
 
 export default Chart;

@@ -94,11 +94,14 @@ export default class App extends Component {
         />
       );
     }
-    const Counters = <div className='counters'>{counters}</div>;
+
+    const Counters = counters.length ? (
+      <div className='counters'>{counters}</div>
+    ) : null;
 
     return (
       <div className='App'>
-        <h1>Counter</h1>
+        <h1>Counters</h1>
         <input
           type='text'
           maxLength='10'
