@@ -22,15 +22,13 @@ const Chart = ({ counters }) => {
     }
   };
 
-  const randomColor = () => {
-    return '#' + ((Math.random() * 0xffffff) << 0).toString(16);
-  };
+  counters.forEach(counter => {
+    const { name, number, color } = counter;
 
-  counters.forEach(({ name, number }) => {
     data.labels.push(name);
     data.datasets[0].data.push(number);
-    data.datasets[0].backgroundColor.push(randomColor());
-    data.datasets[0].hoverBackgroundColor.push(randomColor());
+    data.datasets[0].backgroundColor.push(color);
+    data.datasets[0].hoverBackgroundColor.push(color);
   });
 
   return counters.length ? (

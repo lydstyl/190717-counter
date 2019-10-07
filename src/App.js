@@ -25,13 +25,22 @@ export default class App extends Component {
     return `${pre}_${new Date().getTime()}`;
   };
 
+  randomColor = () => {
+    return '#' + ((Math.random() * 0xffffff) << 0).toString(16);
+  };
+
   addNew(e) {
     const inputVal = this.state.inputText;
     if (inputVal) {
       this.setState({
         counters: [
           ...this.state.counters,
-          { dataKey: this.generateKey(inputVal), name: inputVal, number: 0 }
+          {
+            dataKey: this.generateKey(inputVal),
+            name: inputVal,
+            number: 0,
+            color: this.randomColor()
+          }
         ],
         inputText: ''
       });
@@ -87,7 +96,7 @@ export default class App extends Component {
           handler={e => this.delete(e)}
           increase={e => this.increase(e)}
           decrease={e => this.decrease(e)}
-          key={i + counter}
+          key={this.state.counters[i].dataKey}
           dataKey={this.state.counters[i].dataKey}
           name={counter}
           number={number}
